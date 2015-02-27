@@ -1,0 +1,2055 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta charset="utf-8"/>
+    <title>API Documentation</title>
+    <meta name="author" content=""/>
+    <meta name="description" content=""/>
+
+    <link href="../css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/prism.css" rel="stylesheet" media="all"/>
+    <link href="../css/template.css" rel="stylesheet" media="all"/>
+    
+    <!--[if lt IE 9]>
+    <script src="../js/html5.js"></script>
+    <![endif]-->
+    <script src="../js/jquery-1.11.0.min.js"></script>
+    <script src="../js/ui/1.10.4/jquery-ui.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/jquery.smooth-scroll.js"></script>
+    <script src="../js/prism.min.js"></script>
+    <!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit-->
+    <script type="text/javascript">
+    function loadExternalCodeSnippets() {
+        Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(function (pre) {
+            var src = pre.getAttribute('data-src');
+            var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
+            var language = 'php';
+
+            var code = document.createElement('code');
+            code.className = 'language-' + language;
+
+            pre.textContent = '';
+
+            code.textContent = 'Loading…';
+
+            pre.appendChild(code);
+
+            var xhr = new XMLHttpRequest();
+
+            xhr.open('GET', src, true);
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4) {
+
+                    if (xhr.status < 400 && xhr.responseText) {
+                        code.textContent = xhr.responseText;
+
+                        Prism.highlightElement(code);
+                    }
+                    else if (xhr.status >= 400) {
+                        code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
+                    }
+                    else {
+                        code.textContent = '✖ Error: File does not exist or is empty';
+                    }
+                }
+            };
+
+            xhr.send(null);
+        });
+    }
+
+    $(document).ready(function(){
+        loadExternalCodeSnippets();
+    });
+    $('#source-view').on('shown', function () {
+        loadExternalCodeSnippets();
+    })
+</script>
+
+    <link rel="shortcut icon" href="../images/favicon.ico"/>
+    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png"/>
+    <link rel="apple-touch-icon" sizes="72x72" href="../images/apple-touch-icon-72x72.png"/>
+    <link rel="apple-touch-icon" sizes="114x114" href="../images/apple-touch-icon-114x114.png"/>
+</head>
+<body>
+
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <i class="icon-ellipsis-vertical"></i>
+            </a>
+            <a class="brand" href="../index.html">API Documentation</a>
+
+            <div class="nav-collapse">
+                <ul class="nav pull-right">
+                                        <li class="dropdown">
+                        <a href="../index.html" class="dropdown-toggle" data-toggle="dropdown">
+                            API Documentation <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                                                        <li><a href="../namespaces/Redundancy.html">\Redundancy</a></li>
+                                                    </ul>
+                    </li>
+                                        <li class="dropdown" id="charts-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Charts <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../graphs/class.html">
+                                    <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown" id="reports-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Reports <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../reports/errors.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">42</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/markers.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">31</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/deprecated.html">
+                                                                                                            <i class="icon-list-alt"></i>&#160;Deprecated <span class="label label-info pull-right">0</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--<div class="go_to_top">-->
+    <!--<a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>-->
+    <!--</div>-->
+</div>
+
+<div id="___" class="container-fluid">
+        <section class="row-fluid">
+        <div class="span2 sidebar">
+                                <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-834867157"></a>
+                                <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
+            </div>
+            <div id="namespace-834867157" class="accordion-body collapse in">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-852844740"></a>
+                                <a href="../namespaces/Redundancy.html" style="margin-left: 30px; padding-left: 0">Redundancy</a>
+            </div>
+            <div id="namespace-852844740" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-742007201"></a>
+                                <a href="../namespaces/Redundancy.Classes.html" style="margin-left: 30px; padding-left: 0">Classes</a>
+            </div>
+            <div id="namespace-742007201" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Redundancy.Classes.Errors.html">Errors</a></li>
+                                                    <li class="class"><a href="../classes/Redundancy.Classes.File.html">File</a></li>
+                                                    <li class="class"><a href="../classes/Redundancy.Classes.FileSystemAnalysis.html">FileSystemAnalysis</a></li>
+                                                    <li class="class"><a href="../classes/Redundancy.Classes.FileSystemItem.html">FileSystemItem</a></li>
+                                                    <li class="class"><a href="../classes/Redundancy.Classes.Folder.html">Folder</a></li>
+                                                    <li class="class"><a href="../classes/Redundancy.Classes.PermissionSet.html">PermissionSet</a></li>
+                                                    <li class="class"><a href="../classes/Redundancy.Classes.Role.html">Role</a></li>
+                                                    <li class="class"><a href="../classes/Redundancy.Classes.Setting.html">Setting</a></li>
+                                                    <li class="class"><a href="../classes/Redundancy.Classes.Share.html">Share</a></li>
+                                                    <li class="class"><a href="../classes/Redundancy.Classes.ShareDirection.html">ShareDirection</a></li>
+                                                    <li class="class"><a href="../classes/Redundancy.Classes.ShareMode.html">ShareMode</a></li>
+                                                    <li class="class"><a href="../classes/Redundancy.Classes.SystemConstants.html">SystemConstants</a></li>
+                                                    <li class="class"><a href="../classes/Redundancy.Classes.SystemDirectories.html">SystemDirectories</a></li>
+                                                    <li class="class"><a href="../classes/Redundancy.Classes.User.html">User</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-667612461"></a>
+                                <a href="../namespaces/Redundancy.Kernel.html" style="margin-left: 30px; padding-left: 0">Kernel</a>
+            </div>
+            <div id="namespace-667612461" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Redundancy.Kernel.BackupKernel.html">BackupKernel</a></li>
+                                                    <li class="class"><a href="../classes/Redundancy.Kernel.DBLayer.html">DBLayer</a></li>
+                                                    <li class="class"><a href="../classes/Redundancy.Kernel.FileSystemKernel.html">FileSystemKernel</a></li>
+                                                    <li class="class"><a href="../classes/Redundancy.Kernel.Installer.html">Installer</a></li>
+                                                    <li class="class"><a href="../classes/Redundancy.Kernel.InterfaceKernel.html">InterfaceKernel</a></li>
+                                                    <li class="class"><a href="../classes/Redundancy.Kernel.Kernel.html">Kernel</a></li>
+                                                    <li class="class"><a href="../classes/Redundancy.Kernel.SharingKernel.html">SharingKernel</a></li>
+                                                    <li class="class"><a href="../classes/Redundancy.Kernel.SystemKernel.html">SystemKernel</a></li>
+                                                    <li class="class"><a href="../classes/Redundancy.Kernel.UpdateKernel.html">UpdateKernel</a></li>
+                                                    <li class="class"><a href="../classes/Redundancy.Kernel.UserKernel.html">UserKernel</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/README.html">README</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        </div>
+    </section>
+    <section class="row-fluid">
+        <div class="span10 offset2">
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <nav>
+                                                <a href="../namespaces/Redundancy.Kernel.html">\Redundancy\Kernel</a> <i class="icon-level-up"></i>
+                                            </nav>
+                    <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
+
+                    <h1><small>\Redundancy\Kernel</small>UserKernel</h1>
+                    <p><em>This file contains the user kernel, which contains all needed functions for managing the users of the program.</em></p>
+                    
+                    
+                                        
+                    <section id="summary">
+                        <h2>Summary</h2>
+                        <section class="row-fluid heading">
+                            <section class="span4">
+                                <a href="#methods">Methods</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#properties">Properties</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#constants">Constants</a>
+                            </section>
+                        </section>
+                        <section class="row-fluid public">
+                            <section class="span4">
+                                                                    <a href="../classes/Redundancy.Kernel.UserKernel.html#method_RegisterUser" class="">RegisterUser()</a><br />
+                                                                    <a href="../classes/Redundancy.Kernel.UserKernel.html#method_IsLoginOrMailFree" class="">IsLoginOrMailFree()</a><br />
+                                                                    <a href="../classes/Redundancy.Kernel.UserKernel.html#method_DeleteUser" class="">DeleteUser()</a><br />
+                                                                    <a href="../classes/Redundancy.Kernel.UserKernel.html#method_ChangePassword" class="">ChangePassword()</a><br />
+                                                                    <a href="../classes/Redundancy.Kernel.UserKernel.html#method_GeneratePassword" class="">GeneratePassword()</a><br />
+                                                                    <a href="../classes/Redundancy.Kernel.UserKernel.html#method_ResetPasswordByMail" class="">ResetPasswordByMail()</a><br />
+                                                                    <a href="../classes/Redundancy.Kernel.UserKernel.html#method_DeleteUserByAdminPanel" class="">DeleteUserByAdminPanel()</a><br />
+                                                                    <a href="../classes/Redundancy.Kernel.UserKernel.html#method_GetUserByAdminPanel" class="">GetUserByAdminPanel()</a><br />
+                                                                    <a href="../classes/Redundancy.Kernel.UserKernel.html#method_SetUserByAdminPanel" class="">SetUserByAdminPanel()</a><br />
+                                                                    <a href="../classes/Redundancy.Kernel.UserKernel.html#method_GetPermissionValues" class="">GetPermissionValues()</a><br />
+                                                                    <a href="../classes/Redundancy.Kernel.UserKernel.html#method_GetRoleByName" class="">GetRoleByName()</a><br />
+                                                                    <a href="../classes/Redundancy.Kernel.UserKernel.html#method_GetPermission" class="">GetPermission()</a><br />
+                                                                    <a href="../classes/Redundancy.Kernel.UserKernel.html#method_UpdateOrCreateGroup" class="">UpdateOrCreateGroup()</a><br />
+                                                                    <a href="../classes/Redundancy.Kernel.UserKernel.html#method_SetAsDefaultGroup" class="">SetAsDefaultGroup()</a><br />
+                                                                    <a href="../classes/Redundancy.Kernel.UserKernel.html#method_DeleteGroup" class="">DeleteGroup()</a><br />
+                                                                    <a href="../classes/Redundancy.Kernel.UserKernel.html#method_GetPermissionValueFromRole" class="">GetPermissionValueFromRole()</a><br />
+                                                                    <a href="../classes/Redundancy.Kernel.UserKernel.html#method_GetStorageByAdminPanel" class="">GetStorageByAdminPanel()</a><br />
+                                                                    <a href="../classes/Redundancy.Kernel.UserKernel.html#method_GetInstalledRoles" class="">GetInstalledRoles()</a><br />
+                                                                    <a href="../classes/Redundancy.Kernel.UserKernel.html#method_IsActionAllowed" class="">IsActionAllowed()</a><br />
+                                                                    <a href="../classes/Redundancy.Kernel.UserKernel.html#method_GetUserNameById" class="">GetUserNameById()</a><br />
+                                                                    <a href="../classes/Redundancy.Kernel.UserKernel.html#method_GetUser" class="">GetUser()</a><br />
+                                                                    <a href="../classes/Redundancy.Kernel.UserKernel.html#method_Authentificate" class="">Authentificate()</a><br />
+                                                                    <a href="../classes/Redundancy.Kernel.UserKernel.html#method_GetIP" class="">GetIP()</a><br />
+                                                                    <a href="../classes/Redundancy.Kernel.UserKernel.html#method_LogIn" class="">LogIn()</a><br />
+                                                                    <a href="../classes/Redundancy.Kernel.UserKernel.html#method_GetSessionByCookie" class="">GetSessionByCookie()</a><br />
+                                                                    <a href="../classes/Redundancy.Kernel.UserKernel.html#method_KillSessionByToken" class="">KillSessionByToken()</a><br />
+                                                                    <a href="../classes/Redundancy.Kernel.UserKernel.html#method_IsSessionExisting" class="">IsSessionExisting()</a><br />
+                                                                    <a href="../classes/Redundancy.Kernel.UserKernel.html#method_GetPermissionSet" class="">GetPermissionSet()</a><br />
+                                                                    <a href="../classes/Redundancy.Kernel.UserKernel.html#method_GetListOfInstalledPermissions" class="">GetListOfInstalledPermissions()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No public properties found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No constants found</em>
+                                                            </section>
+                        </section>
+                        <section class="row-fluid protected">
+                            <section class="span4">
+                                                                    <em>No protected methods found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No protected properties found</em>
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                        <section class="row-fluid private">
+                            <section class="span4">
+                                                                    <a href="../classes/Redundancy.Kernel.UserKernel.html#method_HashPassword" class="">HashPassword()</a><br />
+                                                                    <a href="../classes/Redundancy.Kernel.UserKernel.html#method_GetUserRole" class="">GetUserRole()</a><br />
+                                                                    <a href="../classes/Redundancy.Kernel.UserKernel.html#method_GenerateToken" class="">GenerateToken()</a><br />
+                                                                    <a href="../classes/Redundancy.Kernel.UserKernel.html#method_KillSessionCookie" class="">KillSessionCookie()</a><br />
+                                                                    <a href="../classes/Redundancy.Kernel.UserKernel.html#method_CreateCookie" class="">CreateCookie()</a><br />
+                                                                    <a href="../classes/Redundancy.Kernel.UserKernel.html#method_SetLastLoginDateTime" class="">SetLastLoginDateTime()</a><br />
+                                                                    <a href="../classes/Redundancy.Kernel.UserKernel.html#method_IncreaseFailedLoginsCounter" class="">IncreaseFailedLoginsCounter()</a><br />
+                                                                    <a href="../classes/Redundancy.Kernel.UserKernel.html#method_ResetFailedLoginsCounter" class="">ResetFailedLoginsCounter()</a><br />
+                                                                    <a href="../classes/Redundancy.Kernel.UserKernel.html#method_GetFailedLoginsCounter" class="">GetFailedLoginsCounter()</a><br />
+                                                                    <a href="../classes/Redundancy.Kernel.UserKernel.html#method_IsNewSessionNeeded" class="">IsNewSessionNeeded()</a><br />
+                                                                    <a href="../classes/Redundancy.Kernel.UserKernel.html#method_DeleteExpiredSession" class="">DeleteExpiredSession()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No private properties found</em>
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                    </section>
+                </div>
+                <aside class="span4 detailsbar">
+                                        
+                    
+                    <dl>
+                        <dt>File</dt>
+                            <dd><a href="../files/Kernel.Kernel.User.class.html"><div class="path-wrapper">Kernel/Kernel.User.class.php</div></a></dd>
+                                                <dt>Package</dt>
+                            <dd><div class="namespace-wrapper">Default</div></dd>
+                                                <dt>Class hierarchy</dt>
+                            <dd class="hierarchy">
+                                                                                                                                                                    <div class="namespace-wrapper">\Redundancy\Kernel\UserKernel</div>
+                            </dd>
+
+                        
+                        
+                        
+                        
+                                                                        </dl>
+                    <h2>Tags</h2>
+                    <table class="table table-condensed">
+                                            <tr>
+                            <th>
+                                license
+                            </th>
+                            <td>
+                                                                    <p>This program is free software; you can redistribute it and/or
+modify it under the terms of the GNU General Public License as
+published by the Free Software Foundation; either version 3 of
+the License, or (at your option) any later version.</p>
+<p>This program is distributed in the hope that it will be useful, but
+WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+General Public License for more details at
+<a href="http://www.gnu.org/copyleft/gpl.html">http://www.gnu.org/copyleft/gpl.html</a></p>
+                                                            </td>
+                        </tr>
+                                            <tr>
+                            <th>
+                                author
+                            </th>
+                            <td>
+                                                                    <p>squarerootfury <a href="mailto:me@0fury.de">me@0fury.de</a></p>
+                                                            </td>
+                        </tr>
+                                            <tr>
+                            <th>
+                                todo
+                            </th>
+                            <td>
+                                                                    <p>implement functions to delete, edit user. Also the rights management.</p>
+                                                            </td>
+                        </tr>
+                                        </table>
+                </aside>
+            </div>
+
+                        
+                        
+                                    <a id="methods" name="methods"></a>
+            <div class="row-fluid">
+                <div class="span8 content class"><h2>Methods</h2></div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_RegisterUser" name="method_RegisterUser" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">RegisterUser()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">RegisterUser(  <span class="argument">$loginName</span>,   <span class="argument">$displayName</span>,   <span class="argument">$mailAddress</span>,   <span class="argument">$password</span>) : \Redundancy\Classes\User</pre>
+                <p><em>Create a new system user, will be created using the settings User_Default_Role and User_Contingent</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>$loginName </td>
+                                <td><p>the username of the new user, e . g. &quot;chuck&quot;</p></td>
+                            </tr>
+                                                    <tr>
+                                <td></td>
+                                <td>$displayName </td>
+                                <td><p>the displayname of the new user, e. g. &quot;Master of the Universe&quot;</p></td>
+                            </tr>
+                                                    <tr>
+                                <td></td>
+                                <td>$mailAddress </td>
+                                <td><p>a mail adress of the user or null</p></td>
+                            </tr>
+                                                    <tr>
+                                <td></td>
+                                <td>$password </td>
+                                <td><p>the password of the user</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Redundancy.Classes.User.html">\Redundancy\Classes\User</a>
+                                            &mdash; <p>an new object of Redundancy\Classes\User.class.php or an int value containing the error (taken from Redundancy\Classes\Errors)</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_IsLoginOrMailFree" name="method_IsLoginOrMailFree" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">IsLoginOrMailFree()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">IsLoginOrMailFree(string  <span class="argument">$value</span>) : boolean</pre>
+                <p><em>Checks if a given loginName is free and can be used</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$value </td>
+                                <td><p>the login name to search</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                            &mdash; <p>the result of the check</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_DeleteUser" name="method_DeleteUser" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">DeleteUser()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">DeleteUser(  <span class="argument">$loginName</span>,   <span class="argument">$password</span>) : boolean</pre>
+                <p><em>Deletes the user after an successfull authentification</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>$loginName </td>
+                                <td><p>the users login name</p></td>
+                            </tr>
+                                                    <tr>
+                                <td></td>
+                                <td>$password </td>
+                                <td><p>the users password</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                            &mdash; <p>the result of the deletion or an errorcode</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                                                            <p>add methods to delete the files, shares etc.</p>
+                                                                                            <p>file deletion</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_ChangePassword" name="method_ChangePassword" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">ChangePassword()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">ChangePassword(  <span class="argument">$token</span>,   <span class="argument">$oldPassword</span>,   <span class="argument">$newPassword</span>) : boolean</pre>
+                <p><em>Changes the password of the user</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>$token </td>
+                                <td><p>the valid session token for the user</p></td>
+                            </tr>
+                                                    <tr>
+                                <td></td>
+                                <td>$oldPassword </td>
+                                <td><p>the old user password</p></td>
+                            </tr>
+                                                    <tr>
+                                <td></td>
+                                <td>$newPassword </td>
+                                <td><p>the new user password</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                            &mdash; <p>the result of the change</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_GeneratePassword" name="method_GeneratePassword" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">GeneratePassword()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">GeneratePassword(integer  <span class="argument">$length = -1</span>) : string</pre>
+                <p><em>Generates a new random password</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>integer</td>
+                                <td>$length </td>
+                                <td><p>the length of the password. If not set, the value from User_Recover_Password_Length will be used</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                            &mdash; <p>the new password</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                                                            <p>generate an stronger password</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_ResetPasswordByMail" name="method_ResetPasswordByMail" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">ResetPasswordByMail()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">ResetPasswordByMail(string  <span class="argument">$mailAddress</span>) </pre>
+                <p><em>Resets a password by a mail</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$mailAddress </td>
+                                <td><p>the email of the account which password should be resetted</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                                                            <p>check the systems email configuration to prevent mail sending when mail is not configured</p>
+                                                                                            <p>mail body</p>
+                                                                                            <p>Function not complete implemented</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_DeleteUserByAdminPanel" name="method_DeleteUserByAdminPanel" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">DeleteUserByAdminPanel()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">DeleteUserByAdminPanel(  <span class="argument">$loginname</span>,   <span class="argument">$token</span>) </pre>
+                <p><em></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>$loginname </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td></td>
+                                <td>$token </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_GetUserByAdminPanel" name="method_GetUserByAdminPanel" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">GetUserByAdminPanel()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">GetUserByAdminPanel(  <span class="argument">$loginname</span>,   <span class="argument">$token</span>) </pre>
+                <p><em></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>$loginname </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td></td>
+                                <td>$token </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_SetUserByAdminPanel" name="method_SetUserByAdminPanel" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">SetUserByAdminPanel()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">SetUserByAdminPanel(string  <span class="argument">$token</span>, string  <span class="argument">$loginName</span>,   <span class="argument">$displayName</span>, boolean  <span class="argument">$enabled</span>, integer  <span class="argument">$contingentInByte</span>, string  <span class="argument">$newPassword</span>, string  <span class="argument">$group</span>) : boolean</pre>
+                <p><em>Updates the user</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$token </td>
+                                <td><p>the session token</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$loginName </td>
+                                <td><p>the login name to use</p></td>
+                            </tr>
+                                                    <tr>
+                                <td></td>
+                                <td>$displayName </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>boolean</td>
+                                <td>$enabled </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>integer</td>
+                                <td>$contingentInByte </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$newPassword </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$group </td>
+                                <td><p>the groupname</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                            &mdash; <p>errorcode</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_GetPermissionValues" name="method_GetPermissionValues" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">GetPermissionValues()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">GetPermissionValues() : array</pre>
+                <p><em>Get the descriptions of the currently installed permissions</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    array
+                                            &mdash; <p>containing the permissions</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_GetRoleByName" name="method_GetRoleByName" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">GetRoleByName()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">GetRoleByName(string  <span class="argument">$name</span>) : \Redundancy\Kernel\the</pre>
+                <p><em>Get a Role by its name (description)</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$name </td>
+                                <td><p>the name to search</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    \Redundancy\Kernel\the
+                                            &mdash; <p>role | errorcode</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_GetPermission" name="method_GetPermission" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">GetPermission()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">GetPermission(string  <span class="argument">$roleDesc</span>, string  <span class="argument">$permission</span>) : integer</pre>
+                <p><em>Get the value of a permission of a role</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$roleDesc </td>
+                                <td><p>the name of the role</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$permission </td>
+                                <td><p>the name of the permission</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    integer
+                                            &mdash; <p>the value or 40 (PermissionNotFound)</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_UpdateOrCreateGroup" name="method_UpdateOrCreateGroup" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">UpdateOrCreateGroup()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">UpdateOrCreateGroup(string  <span class="argument">$roleName</span>, string  <span class="argument">$roleId</span>, string  <span class="argument">$rolePermissions</span>, string  <span class="argument">$token</span>) : boolean</pre>
+                <p><em>Update or creates a group (role)</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$roleName </td>
+                                <td><p>the role name to search/ create</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$roleId </td>
+                                <td><p>the ID to search or the string &quot;-1&quot; if you create a new group</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$rolePermissions </td>
+                                <td><p>the string which describes the permission of the role</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$token </td>
+                                <td><p>the session token</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                            &mdash; <p>| int (in case of any errors)</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_SetAsDefaultGroup" name="method_SetAsDefaultGroup" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">SetAsDefaultGroup()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">SetAsDefaultGroup(string  <span class="argument">$roleName</span>, string  <span class="argument">$token</span>) : boolean</pre>
+                <p><em>Sets an group flag as the default one</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$roleName </td>
+                                <td><p>the name of the group</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$token </td>
+                                <td><p>a administrative session token</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_DeleteGroup" name="method_DeleteGroup" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">DeleteGroup()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">DeleteGroup(  <span class="argument">$roleName</span>, string  <span class="argument">$token</span>) : boolean</pre>
+                <p><em>Deletes a group with the given name</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>$roleName </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$token </td>
+                                <td><p>the token to use</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                            &mdash; <p>| errorcode if an error occurs</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_GetPermissionValueFromRole" name="method_GetPermissionValueFromRole" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">GetPermissionValueFromRole()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">GetPermissionValueFromRole(  <span class="argument">$role</span>) : string</pre>
+                <p><em>Translates the permission of a role to a string</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>$role </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                            &mdash; <p>the permissions of the role</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_GetStorageByAdminPanel" name="method_GetStorageByAdminPanel" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">GetStorageByAdminPanel()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">GetStorageByAdminPanel(string  <span class="argument">$token</span>, integer  <span class="argument">$userId</span>) : \Redundancy\Classes\FileSystemAnalysis</pre>
+                <p><em>Get the storage informations</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$token </td>
+                                <td><p>a valid session token to identify the user</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>integer</td>
+                                <td>$userId </td>
+                                <td><p>the target user id</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Redundancy.Classes.FileSystemAnalysis.html">\Redundancy\Classes\FileSystemAnalysis</a>
+                                            &mdash; <p>object or an errorcode</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_GetInstalledRoles" name="method_GetInstalledRoles" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">GetInstalledRoles()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">GetInstalledRoles() : array&lt;mixed,\Redundancy\Classes\Role&gt;|null</pre>
+                <p><em>Return the currently installed roles (e. g. admin, user, guest)</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    array&lt;mixed,<a href="../classes/Redundancy.Classes.Role.html">\Redundancy\Classes\Role</a>&gt;|null
+                                            &mdash; <p>an array containing the roles or null (in case of no roles and if the query failed)</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_IsActionAllowed" name="method_IsActionAllowed" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">IsActionAllowed()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">IsActionAllowed(string  <span class="argument">$token</span>, integer  <span class="argument">$permission</span>) : boolean</pre>
+                <p><em>Check if an action is allowed</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$token </td>
+                                <td><p>a valid session token to identify the user</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>integer</td>
+                                <td>$permission </td>
+                                <td><p>the permission to check. Can be taken out of \Redundancy\Classes\PermissionSet</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                            &mdash; <p>the result of the check</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_GetUserNameById" name="method_GetUserNameById" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">GetUserNameById()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">GetUserNameById(  <span class="argument">$loginname</span>,   <span class="argument">$token</span>) </pre>
+                <p><em></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>$loginname </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td></td>
+                                <td>$token </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_GetUser" name="method_GetUser" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">GetUser()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">GetUser(  <span class="argument">$token</span>) : \Redundancy\Classes\User|null</pre>
+                <p><em>Get the user object by the current session. If there is no fitting session to this token, null will be returned
+Also, when the session is expired, this will be null</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>$token </td>
+                                <td><p>the current session token</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Redundancy.Classes.User.html">\Redundancy\Classes\User</a>|null
+                                            &mdash; <p>user or, if failed, null</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_Authentificate" name="method_Authentificate" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">Authentificate()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">Authentificate(  <span class="argument">$loginName</span>,   <span class="argument">$password</span>) : boolean</pre>
+                <p><em>Do an single check of the user credentials</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>$loginName </td>
+                                <td><p>the user's login name</p></td>
+                            </tr>
+                                                    <tr>
+                                <td></td>
+                                <td>$password </td>
+                                <td><p>the user's password</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                            &mdash; <p>the result of the check</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_GetIP" name="method_GetIP" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">GetIP()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">GetIP() </pre>
+                <p><em>Get the clients IP</em></p>
+                
+
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            returns
+                        </th>
+                        <td>
+                                                                                            <p>string the IP</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_LogIn" name="method_LogIn" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">LogIn()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">LogIn(  <span class="argument">$loginName</span>,   <span class="argument">$password</span>,   <span class="argument">$stayLoggedIn</span>) : string</pre>
+                <p><em>Logs the user in and returns an Errorcode from Errors if failure or the session token.  Uses the session timeout from Program_Session_Timeout</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>$loginName </td>
+                                <td><p>the user's login name</p></td>
+                            </tr>
+                                                    <tr>
+                                <td></td>
+                                <td>$password </td>
+                                <td><p>the user's password</p></td>
+                            </tr>
+                                                    <tr>
+                                <td></td>
+                                <td>$stayLoggedIn </td>
+                                <td><p>determines if the user want's to keep logged in.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                            &mdash; <p>a string containing the token or an error code</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_GetSessionByCookie" name="method_GetSessionByCookie" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">GetSessionByCookie()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">GetSessionByCookie() : string</pre>
+                <p><em>Get a session by a cookie</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                            &mdash; <p>the cookie token or -1</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_KillSessionByToken" name="method_KillSessionByToken" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">KillSessionByToken()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">KillSessionByToken(  <span class="argument">$token</span>) : boolean</pre>
+                <p><em>Delete a single token from the database</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>$token </td>
+                                <td><p>the token to delete</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                            &mdash; <p>the result of the deletion. If the token was not existing, the function returns false;</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_IsSessionExisting" name="method_IsSessionExisting" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">IsSessionExisting()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">IsSessionExisting(  <span class="argument">$token</span>) : boolean</pre>
+                <p><em>Check if a single token exists in the database;</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>$token </td>
+                                <td><p>the token to search</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                            &mdash; <p>he result of the check</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_GetPermissionSet" name="method_GetPermissionSet" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">GetPermissionSet()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">GetPermissionSet(string  <span class="argument">$token</span>) : array</pre>
+                <p><em>Get the permissions of an user</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$token </td>
+                                <td><p>the session token</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    array
+                                            &mdash; <p>| errorcode</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_GetListOfInstalledPermissions" name="method_GetListOfInstalledPermissions" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">GetListOfInstalledPermissions()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">GetListOfInstalledPermissions(string  <span class="argument">$token</span>) : array</pre>
+                <p><em>Get the display names of the rights which can be set</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$token </td>
+                                <td><p>the session token</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    array
+                                            &mdash; <p>| errorcode</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_HashPassword" name="method_HashPassword" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">HashPassword()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">HashPassword(  <span class="argument">$password</span>) : \Redundancy\Kernel\the</pre>
+                <p><em>Hashes a given password</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>$password </td>
+                                <td><p>the given password</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    \Redundancy\Kernel\the
+                                            &mdash; <p>password hash</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_GetUserRole" name="method_GetUserRole" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">GetUserRole()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">GetUserRole(  <span class="argument">$loginName</span>) : \Redundancy\Classes\Role|null</pre>
+                <p><em>Get the users role</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>$loginName </td>
+                                <td><p>the user login name</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Redundancy.Classes.Role.html">\Redundancy\Classes\Role</a>|null
+                                            &mdash; <p>or (if the query failed) null</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_GenerateToken" name="method_GenerateToken" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">GenerateToken()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">GenerateToken(  <span class="argument">$loginName</span>,   <span class="argument">$dateTime</span>,   <span class="argument">$ip</span>) : string</pre>
+                <p><em>Generates an unique Token to store the session</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>$loginName </td>
+                                <td><p>the user's login name</p></td>
+                            </tr>
+                                                    <tr>
+                                <td></td>
+                                <td>$dateTime </td>
+                                <td><p>the current date and time</p></td>
+                            </tr>
+                                                    <tr>
+                                <td></td>
+                                <td>$ip </td>
+                                <td><p>the clients IP</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                            &mdash; <p>a string containing the token</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                                                            <p>: Fix these fucking $_SERVER values</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_KillSessionCookie" name="method_KillSessionCookie" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">KillSessionCookie()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">KillSessionCookie() : \Redundancy\Kernel\the</pre>
+                <p><em>Kill the session cookie</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    \Redundancy\Kernel\the
+                                            &mdash; <p>result of the overwrite process with an empty value</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_CreateCookie" name="method_CreateCookie" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">CreateCookie()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">CreateCookie(  <span class="argument">$token</span>,   <span class="argument">$expires = false</span>) </pre>
+                <p><em>Creates a cookie for the given token session
+uses the configuration value Program_Session_Timeout, if not set, the default cookie lifetime will be 5 minutes.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>$token </td>
+                                <td><p>the token</p></td>
+                            </tr>
+                                                    <tr>
+                                <td></td>
+                                <td>$expires </td>
+                                <td><p>bool determines if the cookie should expire</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_SetLastLoginDateTime" name="method_SetLastLoginDateTime" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">SetLastLoginDateTime()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">SetLastLoginDateTime(  <span class="argument">$loginName</span>) </pre>
+                <p><em>Set the last Login Date and time</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>$loginName </td>
+                                <td><p>the username of the logging in user</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_IncreaseFailedLoginsCounter" name="method_IncreaseFailedLoginsCounter" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">IncreaseFailedLoginsCounter()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">IncreaseFailedLoginsCounter(  <span class="argument">$loginName</span>) </pre>
+                <p><em>Increases the failure counter of failed logins</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>$loginName </td>
+                                <td><p>the username</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_ResetFailedLoginsCounter" name="method_ResetFailedLoginsCounter" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">ResetFailedLoginsCounter()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">ResetFailedLoginsCounter(  <span class="argument">$loginName</span>) </pre>
+                <p><em>Resets the failure counter.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>$loginName </td>
+                                <td><p>the username</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_GetFailedLoginsCounter" name="method_GetFailedLoginsCounter" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">GetFailedLoginsCounter()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">GetFailedLoginsCounter(  <span class="argument">$loginName</span>) : integer</pre>
+                <p><em>Resets the failure counter.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>$loginName </td>
+                                <td><p>the username</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    integer
+                                            &mdash; <p>the amount of failed logins</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_IsNewSessionNeeded" name="method_IsNewSessionNeeded" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">IsNewSessionNeeded()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">IsNewSessionNeeded(  <span class="argument">$loginName</span>) : boolean|string</pre>
+                <p><em>Checks if the user can create a new session or an old one is still active</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>$loginName </td>
+                                <td><p>the username to search</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    boolean|string
+                                            &mdash; <p>The result of the check or the token</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_DeleteExpiredSession" name="method_DeleteExpiredSession" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">DeleteExpiredSession()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">DeleteExpiredSession(string  <span class="argument">$loginName</span>) </pre>
+                <p><em>Delete old sessions (except it is a keep alive session!)</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$loginName </td>
+                                <td><p>the login name</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    </div>
+    </section>
+
+    <div id="source-view" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="source-view-label" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="source-view-label">Kernel.User.class.php</h3>
+        </div>
+        <div class="modal-body">
+            <pre data-src="../files/Kernel/Kernel.User.class.php.txt" class="language-php line-numbers"></pre>
+        </div>
+    </div>
+
+    <footer class="row-fluid">
+        <section class="span10 offset2">
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <section class="row-fluid footer-sections">
+                        <section class="span4">
+                                                        <h1><i class="icon-code"></i></h1>
+                            <div>
+                                <ul>
+                                                                            <li><a href="../namespaces/Redundancy.html">\Redundancy</a></li>
+                                                                    </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-bar-chart"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../graphs/class.html">Class Hierarchy Diagram</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-pushpin"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../reports/errors.html">Errors</a></li>
+                                    <li><a href="../reports/markers.html">Markers</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                    </section>
+                </section>
+            </section>
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <hr />
+                    Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
+                    on February 27th, 2015 at 18:18.
+                </section>
+            </section>
+        </section>
+    </footer>
+</div>
+
+</body>
+</html>

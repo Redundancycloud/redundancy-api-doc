@@ -1,0 +1,121 @@
+<?php
+/**
+* Kernel.Backup.class.php
+*/	
+namespace Redundancy\Kernel;
+/**
+* This file contains the functions to backup the system, it creates the snapshots.
+* @license
+*
+* This program is free software; you can redistribute it and/or
+* modify it under the terms of the GNU General Public License as
+* published by the Free Software Foundation; either version 3 of
+* the License, or (at your option) any later version.
+*
+* This program is distributed in the hope that it will be useful, but
+* WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+* General Public License for more details at
+* http://www.gnu.org/copyleft/gpl.html
+* 
+* @author  squarerootfury <me@0fury.de>	
+*/
+class BackupKernel{
+	private $messages;
+	public function IsBackupPossible(){
+		$dir = $GLOBALS["Kernel"]->FileSystemKernel->GetSystemDir(\Redundancy\Classes\SystemDirectories::Snapshots);
+		return is_writable($dir);
+	}
+	public function StartBackup(){
+		$this->messages = "Started backup on ".date("D M j G:i:s T Y")."\n";
+		//Create snapshot folder
+		$dir =  $GLOBALS["Kernel"]->FileSystemKernel->GetSystemDir(\Redundancy\Classes\SystemDirectories::Snapshots);
+		if (!$this->IsBackupPossible()){
+			$this->messages .="No backup possible.\n";
+			return false;
+		}
+		$folderName = date("D M j G:i:s T Y");
+		if (!mkdir($dir.$folderName)){
+			$this->messages .="Could not create snapshot folder.\n";
+			return false;
+		}
+
+		//TODO: Maint Mode
+		$this->BackupFiles($dir.$folderName);
+		$this->BackupDataBase($dir.$folderName);
+		file_put_contents($dir.$folderName."/"."BackupLog.txt", $this->messages);
+		return false;
+	}
+	public function BackupDataBase($targetDir)
+	{
+		mkdir($targetDir."/DataBase/");
+		//TODO: db independent solution
+		$tables = DBLayer::GetInstance()->RunSelect(sprintf("Show tables"));
+		$tableNames = array();
+		foreach ($tables as $key => $name) {
+			foreach ($name as $k => $value) {
+				$tableNames[] = $value;
+			}			
+		}
+		$this->messages.="Found ".count($tableNames). " tables\n";
+		$tableWithData = array();
+		foreach ($tableNames as $key => $value) {
+			$tableWithData[$value] = array();
+			$c = DBLayer::GetInstance()->RunSelect(sprintf("Select * from $value"));
+			if (count($c) != 0){
+				foreach ($c as $k => $v) {				
+					$tableWithData[$value][] = $v;
+				}
+			}			
+		}
+
+		foreach ($tableWithData as $key => $value) {
+			$name = $key;
+			$content = "";
+			/*foreach ($value as $k => $tuple) {
+				$i = 0;
+				foreach ($tuple as $kTuple => $vTuple) {	
+					$content .= "\"".$kTuple."\"";
+					if ($i < count($tuple) -1)
+						$content .=",";
+					$i++;
+				}
+				$content .="\n";
+				break;
+			}*/
+
+			foreach ($value as $k => $tuple) {
+				$i = 0;
+				foreach ($tuple as $kTuple => $vTuple) {	
+					$content .= "\"".$vTuple."\"";
+					if ($i < count($tuple) -1)
+						$content .=",";
+					$i++;
+				}
+				$content .="\n";
+			}
+			
+			file_put_contents($targetDir."/DataBase/".$name.".csv", $content);
+		}
+	}
+	public function BackupFiles($targetDir){
+		$storageDir = $GLOBALS["Kernel"]->FileSystemKernel->GetSystemDir(\Redundancy\Classes\SystemDirectories::Storage);
+		$count = 0;
+		$fails = 0;
+		if ($handle = opendir($storageDir)) {
+		    while (false !== ($file = readdir($handle))) {
+		        if ($file != "." && $file != ".." && $file != ".htaccess" && $file != ".gitignore") {
+		         	$copied = copy($storageDir.$file,$targetDir."/".$file);
+		         	if (!$copied)
+		         		$fails++;
+		         	$count++;
+		         	$this->messages .="Copied $file: ".(($copied) ? "true" : "false")."\n";
+		        }
+		    }
+		    closedir($handle);
+		}
+		$this->messages .="Files processed: $count \n";
+		$this->messages .="Files failed: $fails\n";
+	}
+}
+?>
